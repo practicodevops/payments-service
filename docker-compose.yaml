@@ -8,8 +8,7 @@ services:
     ports:
       - "8080:8080"
     healthcheck:
-      # cambiar esto
-      test: ["CMD", "wget", "http://localhost:8080/shipping/c"]
+      test: ["CMD", "wget", "http://localhost:8080/payments/1"]
       interval: 5s
 
   postman:
