@@ -7,9 +7,6 @@ services:
     image: payments-service
     ports:
       - "8080:8080"
-    healthcheck:
-      test: ["CMD", "wget", "--post-data=''", "http://localhost:8080/payments/1"]
-      interval: 5s
 
   postman:
     container_name: postman-tests-container
@@ -17,12 +14,7 @@ services:
       context: ./postman
       dockerfile: Dockerfile
     image: postman-tests
-    command:
-      run payments-service.postman_collection.json -k
-      -r cli,htmlextra
-      --reporter-htmlextra-export="reports/payments-service-api-tests.html"
     volumes:
       - ./postman:/etc/newman
     depends_on: 
-       payments-service-api:
-        condition: service_healthy
+      - payments-service-api
