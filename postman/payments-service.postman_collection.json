@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "929e3a45-2053-43a6-ad74-083e352dadb4",
+		"name": "payments-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El response type es json\", function(){\r",
+							"\tpm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{path}}/payments/1",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"payments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"El status code es 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "path",
+			"value": "payments-api-container:8080",
+			"type": "default"
+		}
+	]
+}
